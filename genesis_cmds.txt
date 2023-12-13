@@ -1,10 +1,48 @@
+#Create repo locally
 mkdir -p ./projectslocalrepo/static_website
 
+#Move into repo directory and initialize
 cd static_website/
 git init
 cat .git/config 
 
+#Use the github tool to set up the repo remotely with required flags
 gh repo create --public -s ~/projectslocalrepo/static_website -r website_static --add-readme -d "test of static website pushed programatically from github"
 
+#Save a record of cmds executed
 history | tail -30
 history | tail -30 | cat > genesis_cmds.txt
+
+#View your repos with teh github gh tool
+gh repo list
+
+#update the to new naming convention master to main
+git branch -m master main
+
+#Check the repo's status and logs before & after adding files and committing changes
+git status
+git log
+git add .
+git status
+git log
+git commit -m "added genesis_cmds.txt: repo setup inx"
+git status
+
+#Check the repo's config file and add the path to the remote repo on github
+cat .git/config 
+git remote add origin git@github.com:crackdev-in/static_website.git
+cat .git/config 
+
+#Push changes to the remote repo on github
+git push -u origin main
+
+#Check status and logs of repo
+git status
+git log
+
+#Append and filter new & relevant cmds to this file
+history | tail -30 >> genesis_cmds.txt
+
+
+
+
