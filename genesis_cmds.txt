@@ -1,0 +1,10 @@
+mkdir -p ./projectslocalrepo/static_website
+
+cd static_website/
+git init
+cat .git/config 
+
+gh repo create --public -s ~/projectslocalrepo/static_website -r website_static --add-readme -d "test of static website pushed programatically from github"
+
+history | tail -30
+history | tail -30 | cat > genesis_cmds.txt
