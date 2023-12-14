@@ -1,3 +1,5 @@
+# see OpenProject on local Proxmox for more details on this project
+
 #Create repo locally
 mkdir -p ./projectslocalrepo/static_website
 
@@ -61,3 +63,14 @@ history | tail -30 >> genesis_cmds.txt
  2114  git push origin main 
  2115  git log
  2120  history | tail -20 >> genesis_cmds.txt 
+
+# setup ec2 on aws
+# moved .pem key to .ssh and chmod 400
+# login to ec2 instance from local with above pem key and Public IP
+# on ec2 instance update and upgrade the instance
+
+# Install webserver http2 [apache]
+
+
+
+
