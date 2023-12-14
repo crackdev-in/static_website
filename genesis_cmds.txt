@@ -45,4 +45,19 @@ history | tail -30 >> genesis_cmds.txt
 
 
 
+# added and committed to self cmds documentation genesis_cmds.txt
+ 2101  git commit -am "genesis_cmds.txt: added new cmds master to main, added remote repo path, add,commit,push to remote, check repo status and logs"
+ 2102  git log 
 
+# added index and about html pages and placeholder content to index, the about has details of the project. add and commit the index ad about files and push to remote repo
+ 2106  touch index.html about.html
+ 2107  nano index.html
+ 2108  nano about.html 
+ 2109  cat index.html > about.html 
+ 2110  nano about.html 
+ 2111  git status
+ 2112  git add .
+ 2113  git commit -am "added index.html & about.html, about.html: lists purpose and skills usage in this project also content can be used in the README.md index.html: basic hand typed html for demo purpose, serves as a good refresher for long dormant html skills and keeps the code simple as UI is not the focus here"
+ 2114  git push origin main 
+ 2115  git log
+ 2120  history | tail -20 >> genesis_cmds.txt 
