@@ -92,3 +92,13 @@ install tmux if not already installed
 
 Browse to var/www/html
 save original apache ("It works") landing page to backup and create your own test page
+
+# configure ports 80, 22 under a security group
+see OpenProject for security group
+
+# Copy files from local to remote and test if website is publicly accessible
+mkdir a dir in home folder static_website_staging
+Copy local html files from static_website to ec2 instance, and then transfer to website at /var/www/html
+sudo scp -i ~/.ssh/static_webpage.pem /home/<USER>/projectslocalrepo/static_website/*.html ubuntu@xxx.xxx.xxx.xxx:~/static_website_staging
+
+sudo cp ./static_website_staging/* /var/www/html/
