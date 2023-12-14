@@ -69,8 +69,26 @@ history | tail -30 >> genesis_cmds.txt
 # login to ec2 instance from local with above pem key and Public IP
 # on ec2 instance update and upgrade the instance
 
+# cmdline
+ 2001  git log
+ 2002  git status
+ 2003  git diff
+ 2004  git commit -am "genesis_cmds.txt: add comment of ec2 setup, pem key, login to instance, and instance prep update & upgrad"
+ 2005  git diff
+ 2006  git log
+ 2007  git status
+ 2008  git push origin main
+ 2009  ls
+ 2010  history | tail -10 >> genesis_cmds.txt 
+
+
 # Install webserver http2 [apache]
+optional - sudo ufw app list
+sudo apt install apache2
+systemctl status apache2
+optional - sudo ufw app list
+browse to the public ip to the the "It works" page.
+install tmux if not already installed
 
-
-
-
+Browse to var/www/html
+save original apache ("It works") landing page to backup and create your own test page
