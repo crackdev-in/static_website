@@ -97,8 +97,30 @@ save original apache ("It works") landing page to backup and create your own tes
 see OpenProject for security group
 
 # Copy files from local to remote and test if website is publicly accessible
-mkdir a dir in home folder static_website_staging
+mkdir a dir in ec2 home folder static_website_staging
 Copy local html files from static_website to ec2 instance, and then transfer to website at /var/www/html
 sudo scp -i ~/.ssh/static_webpage.pem /home/<USER>/projectslocalrepo/static_website/*.html ubuntu@xxx.xxx.xxx.xxx:~/static_website_staging
 
+# ec2: copy from staging to webserver folder
 sudo cp ./static_website_staging/* /var/www/html/
+
+
+# Added a text for automation test
+nano index.html 
+git status
+git diff
+git commit -am "index.html: added test text for local to aws automation"
+
+# automate checking of static_website_staging for changes and copy to webserver folder /var/www/html
+# used similar while on piserver(RaspiDash) and similar to 2014-15 IoT server, need to locate and check that code
+while true; do sudo diff index.html /var/www/html/index.html >/dev/null 2>&1; if [ $? -eq 0 ]; then echo "No changes"; else sudo cp *.html /var/www/html; echo "files updated"; fi; sleep 10; done
+
+verify website output on public IP 
+or 
+sudo cat /var/www/html/index.html 
+
+
+# todo edit the ec2 to run script on boot - cron,systemd,rc.local,init.d
+
+
+
