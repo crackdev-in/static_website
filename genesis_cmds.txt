@@ -121,6 +121,12 @@ sudo cat /var/www/html/index.html
 
 
 # todo edit the ec2 to run script on boot - cron,systemd,rc.local,init.d
+#Create a script
+chmod +x /home/ubuntu/startup.sh
+# Set a crontab for it:
+crontab -e
+@reboot  /home/ubuntu/startup.sh
 
-
-
+# Reboot the ec2 instance and test
+	
+	
