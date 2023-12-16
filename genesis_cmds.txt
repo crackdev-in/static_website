@@ -128,5 +128,7 @@ crontab -e
 @reboot  /home/ubuntu/startup.sh
 
 # Reboot the ec2 instance and test
-	
-# 	
+success	
+
+# edited the script to output to a log 	
+# check all bash history local and ec2
