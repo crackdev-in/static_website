@@ -130,5 +130,15 @@ crontab -e
 # Reboot the ec2 instance and test
 success	
 
-# edited the script to output to a log 	
+# edited the script to output to a log and added date and time for every update, tested	
+----------x---------
+#!/bin/bash
+
+while true; do sudo diff /home/ubuntu/static_website_staging/index.html /var/www/html/index.html >/dev/null 2>&1; if [ $? -eq 0 ]; then echo "No changes" >> static_website_update.log; else sudo cp /home/ubuntu/static_website_staging/*.html /var/www/html; echo "files updated `date +'%d-%b-%Y:%T'`" >> static_website_update.log; fi; sleep 10; done &
+
+----------x---------
+
 # check all bash history local and ec2
+
+
+
