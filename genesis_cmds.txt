@@ -142,3 +142,64 @@ while true; do sudo diff /home/ubuntu/static_website_staging/index.html /var/www
 
 
 
+
+# post-commit script to automate deployment 
+31Dec23
+ cd projectslocalrepo/static_website/
+ git status
+ nano about.html 
+ nano index.html 
+ sudo scp -i ~/.ssh/static_webpage.pem /home/chronos/projectslocalrepo/static_website/*.html ubuntu@54.196.181.23:~/static_website_staging
+ bash checkstate_select_autologout_shutdown.sh 
+ git status 
+ git diff
+ git commit -am "checkstate_select_autologin.sh: added the static_webpage.pemto script, need to have an option in script for .pem/credential files"
+
+#create the post-commit hook
+ cd ../../static_website/
+ cd .git/hooks/
+ touch post-commit
+ ls
+ nano post-commit 
+
+# put in the file transfer script into the hook
+#------------------xxx-------------- 
+
+#!/bin/sh
+
+echo "===== POST-COMMIT CHECKLIST ====="
+
+# Read user input, assign stdin to keyboard
+exec < /dev/tty
+
+while read -p "Check if EC2 static_website instance is running ? (Y/n) " yn; do
+    case $yn in
+        [Yy] ) break;;
+        [Nn] ) echo "Please start instance before deploying"; exit 1;;
+        * ) echo "Please answer y (yes) or n (no):" && continue;
+    esac
+done
+
+read -p "Enter in the correct EC2 instance IP Address " ec2_ip;
+
+
+while read -p "Do you want to deploy to static_website to EC2 instance ? (Y/n) " yn; do
+    case $yn in
+        [Yy] ) sudo scp -i ~/.ssh/static_webpage.pem /home/chronos/projectslocalrepo/static_website/*.html ubuntu@$ec2_ip:~/static_website_staging; sleep 5; break;;
+        [Nn] ) echo "Please use a descriptive comment"; exit 1;;
+        * ) echo "Please answer y (yes) or n (no):" && continue;
+    esac
+done
+
+exec <&-
+
+#------------------xxx-------------- 
+
+
+git status
+ git diff
+ git commit -am "Automation test done yesterday 30thDec, no this commit to test post-commit deployment script"
+ git commit -am "this commit to test cases in post-commit deplyment script"
+ nano index.html 
+ git diff
+ git commit -am "this commit to test cases in post-commit deplyment script"
